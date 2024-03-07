@@ -13,14 +13,14 @@ export default function Search({placeholder}: { placeholder: string }) {
     const {replace} = useRouter();
     const handleSearch = useDebouncedCallback((term) => {
         const params = new URLSearchParams(searchParams)
-        console.log(`Searching… ${term}`);
+        params.set('page', '1');
         if (term) {
             params.set('query', term);
         } else {
             params.delete('query');
         }
         replace(`${pathname}?${params.toString()}`);
-    }, 500);
+    }, 300);
 
     return (
         <div className="relative flex flex-1 flex-shrink-0">
